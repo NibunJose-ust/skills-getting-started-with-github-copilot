@@ -97,7 +97,7 @@ def signup_for_activity(activity_name: str, email: str):
     activity = activities[activity_name]
 
     if email in activity["participants"]:
-        raise HTTPException(status_code=400, detail="Student is already signed up for this activity")
+        raise HTTPException(status_code=400, detail="Participant already registered")
 
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
@@ -115,4 +115,4 @@ def unregister_participant(activity_name: str, email: str):
         raise HTTPException(status_code=404, detail="Participant not found")
 
     activity["participants"].remove(email)
-    return {"message": f"Removed {email} from {activity_name}"}
+    return {"message": f"Unregistered {email} from {activity_name}"}
